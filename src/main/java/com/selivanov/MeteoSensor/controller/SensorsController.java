@@ -35,7 +35,7 @@ public class SensorsController {
     }
 
     public ResponseEntity<HttpStatus> registration(@RequestBody @Valid SensorDTO sensorDTO, BindingResult bindingResult) {
-        Sensor newSensor = convertToSensor(sensorDTO);
+        Sensor newSensor = mapToSensor(sensorDTO);
 
         sensorValidator.validate(newSensor, bindingResult);
 
@@ -55,7 +55,7 @@ public class SensorsController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    private Sensor convertToSensor(SensorDTO sensorDTO) {
+    private Sensor mapToSensor(SensorDTO sensorDTO) {
         return modelMapper.map(sensorDTO, Sensor.class);
     }
 }
